@@ -6,7 +6,7 @@ import { MENUS } from './model/menus';
   providedIn: 'root'
 })
 export class ServiceService {
-  url = 'http://127.0.0.1:8000/api';
+  apiUrl = 'https://sale.suhail-osman.com/api';
   ApiRoutes = {
     MenuRoute: {
       getData: '/menu',
@@ -20,22 +20,22 @@ export class ServiceService {
   constructor(public http: HttpClient) { }
 // add
 AddMenu(MenuData: any) {
-  return this.http.post(this.url + this.ApiRoutes.MenuRoute.Add, MenuData);
+  return this.http.post(this.apiUrl + this.ApiRoutes.MenuRoute.Add, MenuData);
 }
 // all data 
 getData() {
-  return this.http.get(this.url + this.ApiRoutes.MenuRoute.Add);
+  return this.http.get(this.apiUrl + this.ApiRoutes.MenuRoute.Add);
 }
 // first-item in hero
 firstItem(id:any) {
-  return this.http.post(this.url + this.ApiRoutes.MenuRoute.getfirstItem ,id);
+  return this.http.post(this.apiUrl + this.ApiRoutes.MenuRoute.getfirstItem ,id);
 }
 // Delete item
 EditData(data:any) {
-  return this.http.post(this.url + this.ApiRoutes.MenuRoute.edit ,data);
+  return this.http.post(this.apiUrl + this.ApiRoutes.MenuRoute.edit ,data);
 }
 // Delete item
 Delete(id:any) {
-  return this.http.post(this.url + this.ApiRoutes.MenuRoute.delete ,id);
+  return this.http.post(this.apiUrl + this.ApiRoutes.MenuRoute.delete ,id);
 }
 }

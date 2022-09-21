@@ -12,6 +12,7 @@
 
 .text-menu{
     font-family: cursive;
+    font-weight: bold;
     color: #c30013;
     &:hover{
         color: #7e4724;
@@ -151,6 +152,16 @@
     position: relative;
     border: 1px solid #ffffff;
   }
+  .card-title{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #cf3917;
+  }
+  .card-text{
+    line-height: 2;
+    font-weight: bold;
+    color: black;
+  }
 // icon
 ::ng-deep  svg.svg-inline--fa.fa-trash {
     color: red;
@@ -159,4 +170,5 @@
         color: #dc3545;
     }
 }
+
 
