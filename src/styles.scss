@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+
+body 
+{
+    background: url('./assets/img/01.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+//modal show 
+.fade.show {
+    opacity: 1;
+    z-index: 0 !important;
+  }
+  .ngb-modal-backdrop.modal-backdrop.fade.show{
+    z-index: 0;
+  }

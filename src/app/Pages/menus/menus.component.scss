@@ -1,0 +1,162 @@
+// modal
+::ng-deep .modal-content {
+    border-radius: 30px !important;
+}
+::ng-deep .modal-header{
+    padding-bottom:0 !important;
+    border-bottom:unset !important;
+}
+::ng-deep .modal-body {
+    padding: 0 1rem !important;
+}
+
+.text-menu{
+    font-family: cursive;
+    color: #c30013;
+    &:hover{
+        color: #7e4724;
+    }
+}
+//hero
+.title-header{
+    position: relative;
+    left: 15%;
+    top: 15%;
+    color: #c30013;
+    cursor: pointer;
+    font-family: cursive;
+    p{
+        font-size: 5rem;
+        font-weight: bold;
+    }
+    span{
+        font-size: 2rem;
+    }
+}
+.img-header{
+    display: flex;
+    justify-content: start;
+    border: 3px solid #c300149a;
+    background: #fff;
+    width: 310px;
+    height: 310px;
+    border-radius: 50%;
+    padding: 2px;
+    img{
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        object-position: center right;
+    }
+}
+//button
+.btn-add{
+    color: #ffffff;
+    background-color: #c30013;
+    border-color:#c3001391;
+    font-weight: bold;
+    &:hover{
+        color: #eeeeee;
+        background-color: #c30014a8;
+    }
+}
+.btn:focus, .btn.focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(118 62 21) !important
+}
+.btn-submit{
+    // width: 140px;
+    color: #c30014;
+    font-weight: bold;
+    border: 1px solid #dc3545;
+    &:hover{
+        background-color: #994818;
+        color: #ffffff;
+    }
+}
+.button-submit{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+//upload image
+.upload-image {
+    border: 2px blue dashed !important;
+    width: 48em !important;
+    height: 7em  !important;
+}
+.image-upload{
+    position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.image-upload input {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+    }
+.upload-field {
+  display: block;
+  background: #dee2e6;
+  padding: 12px;
+  border-radius: 11px;
+}
+.upload-field .file-thumbnail {
+  cursor: pointer;
+  border: 1px dashed #4e321d;
+  border-radius: 11px;
+  text-align: center;
+  padding: 20px;
+}
+
+.upload-field .file-thumbnail img {
+  width: 50px;
+}
+
+.upload-field .file-thumbnail h3 {
+  font-size: 12px;
+  color: #000000;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.upload-field .file-thumbnail p {
+  font-size: 12px;
+  color: #9ABCD1;
+  margin-bottom: 0;
+}
+
+// card
+.card-img {
+    width: 100%;
+    max-height: 170px;
+    transition: all 0.3s;
+  }
+  .card-img:hover {
+    transform: scale(1.1);
+  }
+  
+.card {
+    font-family: cursive;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #ffffff;
+  }
+// icon
+::ng-deep  svg.svg-inline--fa.fa-trash {
+    color: red;
+    font-size: 1.2rem;
+    &:hover{
+        color: #dc3545;
+    }
+}
+

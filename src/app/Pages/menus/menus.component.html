@@ -1,0 +1,219 @@
+<!-- Navbar -->
+<nav class="navbar navbar-light bg-color-nav ">
+    <span class="navbar-brand mb-0 h1 text-menu">Menu Food</span>
+    
+    <button class="btn btn-add mb-2 me-2" ngbTooltip="Add Item" (click)="open(content)">
+        <fa-icon icon="plus" ngbTooltip="Add Item" ></fa-icon>
+    </button>
+</nav>
+
+<div class="container  p-2 mt-4">
+    <!--hero -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="title-header">
+                <p>{{FirstItem?.title}}</p>
+                <span>{{FirstItem?.description}}</span>
+                <h2>{{FirstItem?.price | number : '1.2-2'}} $</h2>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="img-header">
+                <img src="{{FirstItem?.image}}" class="" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+    <!--List Card-->
+    <div class="row">
+        <div class="col-md-3 mt-2" *ngFor="let data of DataMenus let i = index;">
+            <div class="card" (click)="getfirstItem(data.id)">
+                <img class="card-img-top card-img" src="{{data.image}}" alt="Card image cap">
+                <div class="card-body p-0">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title mt-2 mb-0">{{data.title}}</h5>
+                        <p class="card-text mt-2 ">{{data.price | number : '1.2-2'}}$</p>
+                    </div>
+                    <p class="card-text mt-2 mb-0 mb-2">{{data.description}}</p>
+                </div>
+                <div class="d-flex justify-content-between mb-4 w-50">
+                    <div class="icon-edit">
+                        <fa-icon icon="pen" ngbTooltip="Edit Item" (click)="openEdit(data)"></fa-icon>
+                    </div>
+                    <div class="icon-delete">
+                        <fa-icon icon="trash" ngbTooltip="Delete Item" (click)="Delete(data.id)"></fa-icon>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+<!-- modal Add new Item -->
+<ng-template #content let-modal let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title text-center">Add new item</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="mt-4">
+            <form enctype="multipart/form-data" #menueForm [formGroup]="MenuForm" class="ticket-creation-form">
+                <div class="form-group  row">
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" id="title" autocomplete="off" formControlName="title"
+                            placeholder="title"
+                            [ngClass]="{ 'is-invalid': submittedAdd && addSaveValid.title.errors }" />
+                        <div *ngIf="submittedAdd && addSaveValid.title.errors" class="invalid-feedback">
+                            <div *ngIf="addSaveValid.title.errors.required"> title is required</div>
+                        </div>
+                    </div>
+
+                    <!-- categorys -->
+                    <div class="col-md-12 mt-2">
+                        <input type="text" class="form-control" id="categorys" autocomplete="off"
+                            formControlName="categorys" placeholder="categorys"
+                            [ngClass]="{ 'is-invalid': submittedAdd && addSaveValid.categorys.errors }" />
+                        <div *ngIf="submittedAdd && addSaveValid.categorys.errors" class="invalid-feedback">
+                            <div *ngIf="addSaveValid.categorys.errors.required"> categorys is required</div>
+                        </div>
+                    </div>
+
+                    <!-- price -->
+                    <div class="col-sm-12 mt-2">
+                        <input type="number" class="form-control" id="price" autocomplete="off" formControlName="price"
+                            placeholder="Price"
+                            [ngClass]="{ 'is-invalid': submittedAdd && addSaveValid.price.errors }" />
+                        <div *ngIf="submittedAdd && addSaveValid.price.errors" class="invalid-feedback">
+                            <div *ngIf="addSaveValid.price.errors.required"> price is required</div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-sm-12 mt-2">
+                        <textarea class="form-control" id="description" autocomplete="off" placeholder="Description"
+                            formControlName="description" cols="30" rows="2"
+                            [ngClass]="{ 'is-invalid': submittedAdd && addSaveValid.description.errors }"></textarea>
+                        <div *ngIf="submittedAdd && addSaveValid.description.errors" class="invalid-feedback">
+                            <div *ngIf="addSaveValid.description.errors.required"> description is required</div>
+                        </div>
+                    </div>
+
+                    <!-- image -->
+                    <div class="col-sm-12 mt-2">
+                        <div class="image-upload">
+                            <input type="file" class="upload-image" ng2FileSelect [uploader]="uploader" #file multiple
+                                (onFileSelected)="onFileSelected($event)" ng2FileDrop (fileOver)="fileOverBase($event)"
+                                placeholder="Upload file" accept="image">
+                            <label for="logo" class="upload-field" id="file-label">
+                                <div class="file-thumbnail">
+                                    <img id="image-preview" class="img-thumbnail img-fluid" [src]="imageSrc"
+                                        *ngIf="imageSrc">
+                                    <h3 id="filename">
+                                        Drag and Drop
+                                    </h3>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- button submit -->
+                    <div class="col-sm-12 button-submit mt-2">
+                        <button type="submit" class="btn btn-submit " (click)="addNewMenu()">
+                            Add New <fa-icon icon="save" ngbTooltip="Add Item"></fa-icon>
+                            <span *ngIf="isLoading"  class="spinner-border text-danger spinner-border-sm" role="status"> </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</ng-template>
+
+<!-- modal Add new Item -->
+<ng-template #contentEdit let-modal let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title text-center">Edit Item</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="mt-4">
+            <form enctype="multipart/form-data" #menueForm [formGroup]="UpdataForm" class="ticket-creation-form">
+                <div class="form-group  row">
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" id="inputGroup" name="id" formControlName="id" hidden>
+                        <input type="text" class="form-control" id="title" autocomplete="off" formControlName="title"
+                            placeholder="title"
+                            [ngClass]="{ 'is-invalid': submittedAdd && addSaveValid.title.errors }" />
+                        <div *ngIf="submittedAdd && addSaveValid.title.errors" class="invalid-feedback">
+                            <div *ngIf="addSaveValid.title.errors.required"> title is required</div>
+                        </div>
+                    </div>
+
+                    <!-- categorys -->
+                    <div class="col-md-12 mt-2">
+                        <input type="text" class="form-control" id="categorys" autocomplete="off"
+                            formControlName="categorys" placeholder="categorys"
+                            [ngClass]="{ 'is-invalid': submittedAdd && addSaveValid.categorys.errors }" />
+                        <div *ngIf="submittedAdd && addSaveValid.categorys.errors" class="invalid-feedback">
+                            <div *ngIf="addSaveValid.categorys.errors.required"> categorys is required</div>
+                        </div>
+                    </div>
+
+                    <!-- price -->
+                    <div class="col-sm-12 mt-2">
+                        <input type="number" class="form-control" id="price" autocomplete="off" formControlName="price"
+                            placeholder="Price"
+                            [ngClass]="{ 'is-invalid': submittedAdd && addSaveValid.price.errors }" />
+                        <div *ngIf="submittedAdd && addSaveValid.price.errors" class="invalid-feedback">
+                            <div *ngIf="addSaveValid.price.errors.required"> price is required</div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-sm-12 mt-2">
+                        <textarea class="form-control" id="description" autocomplete="off" placeholder="Description"
+                            formControlName="description" cols="30" rows="2"
+                            [ngClass]="{ 'is-invalid': submittedAdd && addSaveValid.description.errors }"></textarea>
+                        <div *ngIf="submittedAdd && addSaveValid.description.errors" class="invalid-feedback">
+                            <div *ngIf="addSaveValid.description.errors.required"> description is required</div>
+                        </div>
+                    </div>
+
+                    <!-- image -->
+                    <div class="col-sm-12 mt-2">
+                        <div class="image-upload">
+                            <input type="file" class="upload-image" ng2FileSelect [uploader]="uploader" #file multiple
+                                (onFileSelected)="onFileSelected($event)" ng2FileDrop (fileOver)="fileOverBase($event)"
+                                placeholder="Upload file" accept="image">
+                            <label for="logo" class="upload-field" id="file-label">
+                                <div class="file-thumbnail">
+                                    <img id="image-preview" class="img-thumbnail img-fluid" [src]="imageSrc"
+                                        *ngIf="imageSrc">
+                                    <h3 id="filename">
+                                        Drag and Drop
+                                    </h3>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- button submit -->
+                    <div class="col-sm-12 button-submit mt-2">
+                        <button type="submit" class="btn btn-submit " (click)="updateDate()">
+                          Edit <fa-icon icon="edit" ngbTooltip="edit Item"></fa-icon>
+                          <span *ngIf="isLoading"  class="spinner-border text-danger spinner-border-sm" role="status"> </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</ng-template>
