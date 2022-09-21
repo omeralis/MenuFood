@@ -36,7 +36,7 @@
 }
 .img-header{
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     border: 3px solid #c300149a;
     background: #fff;
     width: 310px;
@@ -66,7 +66,6 @@
     box-shadow: 0 0 0 0.2rem rgb(118 62 21) !important
 }
 .btn-submit{
-    // width: 140px;
     color: #c30014;
     font-weight: bold;
     border: 1px solid #dc3545;
