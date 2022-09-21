@@ -7,17 +7,17 @@
     </button>
 </nav>
 
-<div class="container  p-2 mt-4">
+<div class="container p-2 mt-4">
     <!--hero -->
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-lg-6 col-sm-12">
             <div class="title-header">
                 <p>{{FirstItem?.title}}</p>
                 <span>{{FirstItem?.description}}</span>
                 <h2>{{FirstItem?.price | number : '1.2-2'}} $</h2>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-lg-6 col-sm-12">
             <div class="img-header">
                 <img src="{{FirstItem?.image}}" class="" alt="" srcset="">
             </div>
@@ -25,7 +25,7 @@
     </div>
     <!--List Card-->
     <div class="row">
-        <div class="col-md-3 mt-2" *ngFor="let data of DataMenus let i = index;">
+        <div class="col-md-6 col-sm-12 col-lg-3 col-xl-3 mt-2" *ngFor="let data of DataMenus let i = index;">
             <div class="card" (click)="getfirstItem(data.id)">
                 <img class="card-img-top card-img" src="{{data.image}}" alt="Card image cap">
                 <div class="card-body p-0">

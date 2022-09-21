@@ -44,7 +44,6 @@ export class MenusComponent implements OnInit {
     this.EditForm();
     this.IDForm();
     this.initUploader();
-    this.getfirstItem(this.idItem.value?.id);
   }
 
   initForm() {
@@ -71,7 +70,7 @@ export class MenusComponent implements OnInit {
 
   IDForm() {
     this.idItem = new FormGroup({
-      id: new FormControl(1),
+      id: new FormControl(),
     });
   }
   open(content: any) {
@@ -92,6 +91,7 @@ export class MenusComponent implements OnInit {
       (Respone: any) => {
         console.log('Respone', Respone);
         this.DataMenus = Respone;
+        this.FirstItem = Respone[0];        
       }
     )
   }

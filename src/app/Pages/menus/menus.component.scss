@@ -9,7 +9,9 @@
 ::ng-deep .modal-body {
     padding: 0 1rem !important;
 }
-
+.container{
+  overflow: hidden;
+}
 .text-menu{
     font-family: cursive;
     font-weight: bold;
@@ -170,4 +172,21 @@
     }
 }
 
+
+//
+@media screen and (max-width: 768px) {
+  .title-header{
+    top: unset;
+    p {
+      font-size: 3rem;
+    }
+    span {
+      font-size: 1.3rem;
+    }
+    h2{
+      font-size: 1.5rem;
+      margin-top: 6%;
+    }
+  } 
+}
 
